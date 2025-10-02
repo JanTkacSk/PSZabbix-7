@@ -1,3 +1,23 @@
+Install module for all users - requires admin rights:
+```PowerShell
+Install-Module PSZabbix-7
+```
+or
+Install module for the current user only - does not require admin rights:
+```PowerShell
+Install-Module PSZabbix-7 -Scope CurrentUser
+```
+or 
+Install module for all users - requires admin rights:
+```PowerShell
+Install-PSResource PSZabbix-7 -Scope CurrentUser
+```
+or 
+Install module for the current user only - does not require admin rights:
+```PowerShell
+Install-PSResource PSZabbix-7
+```
+
 # PSZabbix7 Module – Example Usage
 
 ---
