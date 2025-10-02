@@ -140,6 +140,7 @@ Get-ZXAction -ActionID $alert.actionid -Output name
 ## Common Parameters
 
 **-WhatIf**
+
 Show JSON request without making the API call.
 ```powershell
 Get-ZXHost -NameSearch test -Output name,status -WhatIf
