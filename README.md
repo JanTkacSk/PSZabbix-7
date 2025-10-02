@@ -16,11 +16,11 @@ or install module for the current user only - no admin rights required:
 Install-PSResource PSZabbix-7 -Scope CurrentUser
 ```
 
-# Set Powershell Execution Policy to RemoteSigned(safer) or Unrestricted
+# Set execution policy to RemoteSigned (safer) or Unrestricted
 
 Set execution policy for all users - requires admin rights.
 ```PowerShell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy RemoteSigned
 ```
 or set execution policy for the current user only - no admin rights required.
 ```PowerShell
