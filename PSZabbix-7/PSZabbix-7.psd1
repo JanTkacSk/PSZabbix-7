@@ -3,7 +3,7 @@
     RootModule = 'PSZabbix-7.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.5'
+    ModuleVersion = '0.0.6'
 
     # ID used to uniquely identify this module
     GUID = 'd3e66cb0-4c68-4f07-9d70-b92a15a26c7a'
@@ -42,7 +42,7 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Adding github URL with docu'
+            ReleaseNotes = 'New-ZXTokenSession bugfix.'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }
