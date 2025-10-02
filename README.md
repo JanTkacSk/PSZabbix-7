@@ -1,8 +1,9 @@
+# Install module from the PowerShell Gallery
 Install module for all users - requires admin rights:
 ```PowerShell
 Install-Module PSZabbix-7
 ```
-or install module for the current user only - does not require admin rights:
+or install module for the current user only - no admin rights required:
 ```PowerShell
 Install-Module PSZabbix-7 -Scope CurrentUser
 ```
@@ -10,10 +11,22 @@ or install module for all users - requires admin rights:
 ```PowerShell
 Install-PSResource PSZabbix-7 
 ```
-or install module for the current user only - does not require admin rights:
+or install module for the current user only - no admin rights required:
 ```PowerShell
 Install-PSResource PSZabbix-7 -Scope CurrentUser
 ```
+
+# Set Powershell Execution Policy to RemoteSigned(safer) or Unrestricted
+
+Set execution policy for all users - requires admin rights.
+```PowerShell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+or set execution policy for the current user only - no admin rights required.
+```PowerShell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 
 # PSZabbix7 Module – Example Usage
 
