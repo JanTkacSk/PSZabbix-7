@@ -42,7 +42,8 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'New-ZXTokenSession bugfix.'
+            ReleaseNotes = 'New-ZXTokenSession - bugfix, refactoring Remove-ZXDiscoveryRule,Remove-ZXHostGroup,
+            Remove-ZXHostTag,Remove-ZXMaintenance,Remove-ZXTriggerPrototype'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }
