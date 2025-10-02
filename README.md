@@ -139,22 +139,20 @@ Get-ZXAction -ActionID $alert.actionid -Output name
 
 ## Common Parameters
 
-**Select specific properties**
-```powershell
-Get-ZXHost -NameSearch test -IncludeTriggers -IncludeInterfaces -InterfaceProperties ip -Output name,status
-```
-
-**Show JSON request without making the API call**
+**-WhatIf**
+Show JSON request without making the API call.
 ```powershell
 Get-ZXHost -NameSearch test -Output name,status -WhatIf
 ```
 
-**Show only the count of results**
+**-CountOutput**
+Show only the count of results
 ```powershell
 Get-ZXHost -Status Disabled -CountOutput
 ```
 
-**Limit the number of returned results**
+**-Limit**
+Limit the number of returned results
 ```powershell
 Get-ZXHost -NameSearch test -Limit 5 -ShowJsonRequest
 ```
