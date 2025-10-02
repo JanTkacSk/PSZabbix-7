@@ -139,21 +139,17 @@ Get-ZXAction -ActionID $alert.actionid -Output name
 
 ## Common Parameters
 
-**-WhatIf**
-
-Show JSON request without making the API call.
+**-WhatIf** - show json request without actually making the API call.
 ```powershell
 Get-ZXHost -NameSearch test -Output name,status -WhatIf
 ```
 
-**-CountOutput**
-Show only the count of results
+**-CountOutput** - show only the count of the returned objects.
 ```powershell
 Get-ZXHost -Status Disabled -CountOutput
 ```
 
-**-Limit**
-Limit the number of returned results
+**-Limit** - limit the number of the returned objects.
 ```powershell
 Get-ZXHost -NameSearch test -Limit 5 -ShowJsonRequest
 ```
