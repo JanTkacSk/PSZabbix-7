@@ -19,7 +19,7 @@ $ModuleFileContent += 'Export-ModuleMember -Function `
     Add-ZXHostGroup, `
     Add-ZXHostNameSuffix, `
     Add-ZXHostTag, `
-    Copy-ZXHostParameters, `
+    Copy-ZXHostProperties, `
     Disable-ZXTrigger, `
     Enable-ZXTrigger, `
     Get-ZXAction, `
