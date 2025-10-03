@@ -55,7 +55,9 @@
             refactored Set-ZXHostName
             refactored Set-ZXHostStatus,
             refactored Update-ZXHostTagList,
-            refactored Update-ZXHostTemplateList'
+            refactored Update-ZXHostTemplateList,
+            refactored Update-ZXMaintenance,
+            refactored Update-ZXService'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }

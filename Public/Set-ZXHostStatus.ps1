@@ -1,6 +1,5 @@
 function Set-ZXHostStatus{
     param(
-        [string]$HostName,
         [string]$HostId,
         [ValidateSet("0","1","Enabled","Disabled")]
         [Parameter(Mandatory=$true)]
@@ -23,26 +22,12 @@ function Set-ZXHostStatus{
     }
 
     if($Status){
-
-        if($HostId){
-            $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
-            if($null -eq $ZXHost.hostid){
-                Write-Host -ForegroundColor Yellow "[Not Found]" -NoNewline
-                Write-Host " $HostId"
-                $LogObject.HostsNotFound += $HostId
-                Continue
-            }
-
-        }
-        elseif ($HostName){
-            $ZXHost = Get-ZXHost -Name $HostName -IncludeTags
-            if($null -eq $ZXHost.host){
-                Write-Host -ForegroundColor Yellow "[Not Found]" -NoNewline
-                Write-Host " $HostName"
-                $LogObject.HostsNotFound += $HostName
-                Continue
-            }
-
+        $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
+        if($null -eq $ZXHost.hostid){
+            Write-Host -ForegroundColor Yellow "[Not Found]" -NoNewline
+            Write-Host " $HostId"
+            $LogObject.HostsNotFound += $HostId
+            Continue
         }
         #Read the $ZXHost properties and use the values to fill in $PSobject properties. $PSobject is later converted to $json request
         $PSObj.params.hostid = $ZXHost.hostid
