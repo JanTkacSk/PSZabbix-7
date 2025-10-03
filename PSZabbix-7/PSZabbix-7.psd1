@@ -51,7 +51,8 @@
             refactored Remove-ZXMaintenance,
             refactored Remove-ZXTriggerPrototype,
             refactored Set-ZXHostLetterCase,
-            refactored Set-ZXHostName'
+            refactored Set-ZXHostName
+            refactored Set-ZXHostStatus'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }

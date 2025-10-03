@@ -5,9 +5,7 @@ function Set-ZXHostLetterCase{
         [switch]$ToLower,
         [string]$HostId,
         [switch]$SameAlias,
-        [switch]$WhatIf,
-        [switch]$Force,
-        [bool]$Confirm=$true
+        [switch]$WhatIf
     )
     #Verify parameters
 
