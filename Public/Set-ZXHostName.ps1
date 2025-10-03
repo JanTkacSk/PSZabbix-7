@@ -5,16 +5,8 @@ function Set-ZXHostName{
         [Parameter(Mandatory=$true)]
         [string]$NewHostName,
         [string]$NewAlias,
-        [switch]$WhatIf,
-        [switch]$ShowJsonRequest,
-        [switch]$ShowJsonResponse,
-        [switch]$Transcript
+        [switch]$WhatIf
     )
-    #Start Transcript
-    if($Transcript){
-        Start-Transcript
-    }
-
     #Verify parameters
 
     #WARNING if you want the alias to be equal to the name, use -NewAlias parameter and set it to the same value as name.
@@ -29,26 +21,10 @@ function Set-ZXHostName{
         continue
     }
     
-    #Funcions
-    #A function that formats and displays the json request that is used in the API call, it removes the API token value and replaces it with *****
-    function ShowJsonRequest {
-        Write-Host -ForegroundColor Yellow "JSON REQUEST"
-        $PSObjShow = $PSObj
-        $PSObjShow.auth = "*****"
-        $JsonShow = $PSObjShow | ConvertTo-Json -Depth 5
-        Write-Host -ForegroundColor Cyan $JsonShow
-    } 
 
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
-    $PSObj  = [PSCustomObject]@{
-        "jsonrpc" = "2.0"; 
-        "method" = "host.update"; 
-        "params" = [PSCustomObject]@{
-            "hostid" = $HostId
-        }; 
-        "auth" = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR(($Global:ZXAPIToken))); #This is the same as $Global:ZXAPIToken | ConvertFrom-SecureString -AsPlainText but this worsk also for PS 5.1
-        "id" = "1"
-    }
+    $PSObj = New-ZXApiRequestObject -Method "host.update"
+    $PSObj | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
 
     if($NewHostName){
 
@@ -85,23 +61,14 @@ function Set-ZXHostName{
     $Json = $PSObj | ConvertTo-Json -Depth 5
 
 
-    #Show JSON Request if -ShowJsonRequest switch is used
-    If ($ShowJsonRequest -or $WhatIf){
-        Write-Host -ForegroundColor Yellow "JSON REQUEST"
-        $PSObjShow = $PSObj
-        $PSObjShow.auth = "*****"
-        $JsonShow = $PSObjShow | ConvertTo-Json -Depth 5
-        Write-Host -ForegroundColor Cyan $JsonShow
+    #Show JSON Request if -Whatif switch is used
+    If ($WhatIf){
+        Write-JsonRequest
     }
 
     #Make the API call
     if(!$Whatif){
         $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
-    }
-
-    If ($ShowJsonResponse){
-        Write-Host -ForegroundColor Yellow "JSON RESPONSE"
-        Write-Host -ForegroundColor Cyan $($request | ConvertTo-Json -Depth 5)
     }
 
     #This will be returned by the function
@@ -116,10 +83,6 @@ function Set-ZXHostName{
     elseif(!$WhatIf) {
         Write-Host -ForegroundColor Yellow "No result"
         return
-    }
-
-    if($Transcript){
-        Stop-Transcript
     }
     
 }

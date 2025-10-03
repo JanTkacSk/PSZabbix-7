@@ -1,12 +1,12 @@
 function New-ZXHost {
     param(
-        [object]$Parameters,
+        [object]$Properties,
         [switch]$WhatIf
     )
 
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "host.create"
-    $PSObj.params = $Parameters
+    $PSObj.params = $Properties
 
     #Convert the PSObjec to Json
     $Json =  $PSObj | ConvertTo-Json -Depth 5
