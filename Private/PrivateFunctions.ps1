@@ -40,6 +40,33 @@ function Resolve-ZXApiResponse {
     }
 }
 
+
+function Resolve-ZXApiResponseV2 {
+    param (
+        [Parameter(Mandatory=$true)]
+        $Request
+    )
+
+    if ($null -ne $Request.error) {
+        Write-Host -ForegroundColor Red "API Error:"
+        return $Request.error
+    }
+
+    if ($null -ne $Request.result) {
+        $props = $Request.result.PSObject.Properties
+        if ($props.Count -eq 1) {
+            $propName = $props[0].Name
+            return $Request.result.$propName
+        } else {
+            return $Request.result
+        }
+    }
+
+    Write-Host -ForegroundColor Yellow "No result found in API response."
+    return
+}
+
+
 #Function to add a filter parameter to the PS object
 function AddFilter($PropertyName,$PropertyValue){
     #Check if filter is already in the object or not and if not, add it.
