@@ -1,7 +1,5 @@
 function Stop-ZXSession {
     param(
-        [switch]$ShowJsonRequest=$true,
-        [switch]$ShowJsonResponse,
         [string]$SessionID,
         [string]$ZXAPIUrl = $ZXAPIUrl,
         [switch]$WhatIf
@@ -11,14 +9,6 @@ function Stop-ZXSession {
         $ZXAPIUrl = Read-Host -Prompt "Enter the zabbix API url:" 
     }
 
-    #A function that formats and displays the json request that is used in the API call, it removes the API token value and replaces it with *****
-    function ShowJsonRequest {
-        Write-Host -ForegroundColor Yellow "JSON REQUEST"
-        $PSObjShow = $PSObj
-        $PSObjShow.auth = "*****"
-        $JsonShow = $PSObjShow | ConvertTo-Json -Depth 5
-        Write-Host -ForegroundColor Cyan $JsonShow
-    }
     if ($SessionID){     
         $Auth = $SessionID
     }
@@ -36,30 +26,13 @@ function Stop-ZXSession {
     }
     $JSON = $PSObj | ConvertTo-Json
     
-    #Show JSON Request if -ShowJsonRequest switch is used
-    If ($ShowJsonRequest){
-        Write-Host -ForegroundColor Yellow "JSON REQUEST"
-        $PSObjShow = $PSObj
-        $PSObjShow.auth = "*****"
-        $JsonShow = $PSObjShow | ConvertTo-Json -Depth 5
-        Write-Host -ForegroundColor Cyan $JsonShow
-    }
-    if(!$WhatIf){
-        $request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
-    }
-    
-    If ($ShowJsonResponse){
-        Write-Host -ForegroundColor Yellow "JSON RESPONSE"
-        Write-Host -ForegroundColor Cyan $($request | ConvertTo-Json -Depth 5)
+    #Show JSON Request if -Whatif switch is used
+    If ($WhatIf){
+        Write-JsonRequest
     }
 
-    #This will be returned by the function
-    if($null -ne $Request.error){
-        $Request.error
-        return
-    } 
-    else {
-        $Request.result
-        return
+    if(!$WhatIf){
+        $request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
+        Resolve-ZXApiResponse -Request $request
     }
 }

@@ -61,7 +61,6 @@ $ModuleFileContent += 'Export-ModuleMember -Function `
     Set-ZXHostLetterCase, `
     Set-ZXHostName, `
     Set-ZXHostStatus, `
-    Stop-ZXSession, `
     Update-ZXHostTagList, `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `

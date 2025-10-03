@@ -43,7 +43,8 @@
 
             # ReleaseNotes of this module
             ReleaseNotes = 'New-ZXTokenSession - bugfix,
-            renamed Copy-ZXHostParameters to Copy-ZXHostProperties, 
+            renamed Copy-ZXHostParameters to Copy-ZXHostProperties,
+            removed Stop-ZXSession,
             refactored Copy-ZXHostProperties,
             refactored Remove-ZXDiscoveryRule,
             refactored Remove-ZXHostGroup,
@@ -52,7 +53,9 @@
             refactored Remove-ZXTriggerPrototype,
             refactored Set-ZXHostLetterCase,
             refactored Set-ZXHostName
-            refactored Set-ZXHostStatus'
+            refactored Set-ZXHostStatus,
+            refactored Update-ZXHostTagList,
+            refactored Update-ZXHostTemplateList'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }
