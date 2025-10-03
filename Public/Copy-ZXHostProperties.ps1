@@ -1,4 +1,4 @@
-function Copy-ZXHostPoperties {
+function Copy-ZXHostProperties {
     param (
         [string]$HostID
     )
