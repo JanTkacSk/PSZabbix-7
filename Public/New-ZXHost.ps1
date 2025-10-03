@@ -20,5 +20,5 @@ function New-ZXHost {
     if(!$WhatIf){
         $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
         Resolve-ZXApiResponse -Request $Request
-    }  
+    }
 }
