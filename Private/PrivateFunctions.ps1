@@ -23,7 +23,8 @@ Function New-ZXApiRequestObject ($Method){
 function Resolve-ZXApiResponse {
     param (
         [Parameter(Mandatory=$true)]
-        $Request
+        $Request,
+        $ExtractValue="result"
     )
     
     if ($null -ne $Request.error) {
@@ -31,7 +32,7 @@ function Resolve-ZXApiResponse {
         return
     }
     elseif ($null -ne $Request.result) {
-        $Request.result
+        $Request."$($ExtractValue)"
         return
     }
     else {
