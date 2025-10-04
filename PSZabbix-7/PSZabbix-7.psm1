@@ -28,7 +28,7 @@ function Resolve-ZXApiResponse {
     )
     
     if ($null -ne $Request.error) {
-        $Request
+        $Request | Select-Object error
         return
     }
     elseif ($null -ne $Request.result) {
@@ -941,8 +941,6 @@ function Get-ZXEvent {
     
 }
 
-
-
 function Get-ZXHistory {
     param(
         [parameter(mandatory="false")]
@@ -1119,7 +1117,7 @@ function Get-ZXHost {
  
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
 
-    $PSObj = New-ZXApiRequestObject -Method host.get
+    $PSObj = New-ZXApiRequestObject -Method host.gett
 
     
     #Add additional host parameters to the ps object based on the function parameters
