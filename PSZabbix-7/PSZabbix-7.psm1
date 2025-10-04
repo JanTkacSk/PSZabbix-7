@@ -1,5 +1,5 @@
 
-# -----------Private Functions---------- #
+# -------------------------------------------------Private Functions------------------------------------------------- #
 
 # Formats and displays the json request that is used in the API call, it removes the API token value and replaces it with *****
 Function Write-JsonRequest {
@@ -9,7 +9,6 @@ Function Write-JsonRequest {
     $JsonShow = $PSObjShow | ConvertTo-Json -Depth 5
     Write-Host -ForegroundColor Cyan $JsonShow
 }
-
 # Basic PS Object wich will be edited based on the used parameters and finally converted to json
 Function New-ZXApiRequestObject ($Method){
         return [PSCustomObject]@{
@@ -20,7 +19,6 @@ Function New-ZXApiRequestObject ($Method){
         "id" = "1"
     }
 }
-
 function Resolve-ZXApiResponse {
     param (
         [Parameter(Mandatory=$true)]
@@ -40,7 +38,6 @@ function Resolve-ZXApiResponse {
         return
     }
 }
-
 #Function to add a filter parameter to the PS object
 function AddFilter($PropertyName,$PropertyValue){
     #Check if filter is already in the object or not and if not, add it.
@@ -50,7 +47,6 @@ function AddFilter($PropertyName,$PropertyValue){
     #Add a specific property to the filter
     $PSObj.params.filter | Add-Member -MemberType NoteProperty -Name $PropertyName -Value $PropertyValue
 }
-
 #Function to add a Search parameter to the PS object
 function AddSearch($PropertyName,$PropertyValue){
     #Check if search is already in the object or not and if not, add it.
@@ -60,7 +56,6 @@ function AddSearch($PropertyName,$PropertyValue){
     #Add a specific property to the filter
     $PSObj.params.search | Add-Member -MemberType NoteProperty -Name $PropertyName -Value $PropertyValue
 }
-
 function ConvertFrom-UnixTime{
     param(
         [array]$UnixTime
@@ -77,7 +72,6 @@ function ConvertFrom-UnixTime{
         Write-Output $StandardTime
     }
 }
-
 function ConvertTo-UnixTime{
     param(
         [datetime]$StandardTime
@@ -91,8 +85,6 @@ function ConvertTo-UnixTime{
         Write-Output $UnixTime
     }
 }
-
-
 <# Create an array of objects from a simple array. Each object has only one property $PropertyName (you choose the name).
 # For example from the following array "1234" it creates an object like" 
 {
@@ -114,10 +106,7 @@ function ConvertArrayToObjects($PropertyName,$Array){
     $Result
     return
 }
-
-
-
-# -----------Public Functions---------- #
+# -------------------------------------------------Public Functions------------------------------------------------- #
 function Add-ZXHostGroup {
     [CmdletBinding()]
     param (
@@ -162,7 +151,6 @@ function Add-ZXHostGroup {
     }
     
 }
-
 function Add-ZXHostNameSuffix{
     param(
         [string]$HostName,
@@ -269,9 +257,6 @@ function Add-ZXHostNameSuffix{
     }
     
 }
-
-
-
 function Add-ZXHostTag{
     param(
         [string]$HostId,
@@ -313,7 +298,6 @@ function Add-ZXHostTag{
     }
     
 }
-
 class ZXTagList {
     [System.Collections.ArrayList]$Tags
 
@@ -331,7 +315,6 @@ class ZXTagList {
         $this.Tags
     }
 }
-
 function Copy-ZXHostProperties {
     param (
         [string]$HostID
@@ -386,7 +369,6 @@ function Copy-ZXHostProperties {
 
     return $params
 }
-
 function Disable-ZXTrigger{
     param(
         [string]$TriggerId,
@@ -414,9 +396,6 @@ function Disable-ZXTrigger{
     }
 
 }
-
-
-
 function Enable-ZXTrigger{
     param(
         [string]$TriggerId,
@@ -443,9 +422,6 @@ function Enable-ZXTrigger{
     }
 
 }
-
-
-
 function Get-ZXAction {
     param(
         [array]$ActionID,
@@ -538,9 +514,6 @@ function Get-ZXAction {
         return
     }
 }
-
-
-
 function Get-ZXAlert {
     param(
         [array]$HostID,
@@ -615,9 +588,6 @@ function Get-ZXAlert {
     }
 
 }
-
-
-
 function Get-ZXApiVersion {
 
     param (
@@ -645,7 +615,6 @@ function Get-ZXApiVersion {
     }
     
 }
-
 function Get-ZXAuditLog {
     param(
         [array]$ResourceID,
@@ -710,7 +679,6 @@ function Get-ZXAuditLog {
     }
     
 }
-
 function Get-ZXDiscoveryRule {
     param(
         [array]$ItemID,
@@ -855,7 +823,6 @@ function Get-ZXDiscoveryRule {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Get-ZXEvent {
     param(
         [array]$HostID,
@@ -940,7 +907,6 @@ function Get-ZXEvent {
     }
     
 }
-
 function Get-ZXHistory {
     param(
         [parameter(mandatory="false")]
@@ -991,7 +957,6 @@ function Get-ZXHistory {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Get-ZXHost {
     [CmdletBinding(PositionalBinding=$false)]
     param(
@@ -1232,7 +1197,6 @@ function Get-ZXHost {
         Resolve-ZXApiResponse -Request $Request
     }        
 }
-
 function Get-ZXHostGroup {
     param(
         [array]$Name,
@@ -1293,7 +1257,6 @@ function Get-ZXHostGroup {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Get-ZXHostInterface {
     param(
         [array]$IP,
@@ -1358,7 +1321,6 @@ function Get-ZXHostInterface {
     }
 
 }
-
 function Get-ZXItem {
     param(
         [array]$HostID,
@@ -1518,7 +1480,6 @@ function Get-ZXItem {
     }   
 
 }
-
 function Get-ZXItemPrototype {
     param(
         [array]$HostID,
@@ -1649,7 +1610,6 @@ function Get-ZXItemPrototype {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Get-ZXMaintenance {
     param(
         [array]$GroupID,
@@ -1835,7 +1795,6 @@ function Get-ZXProblem {
     }
 
 }
-
 function Get-ZXProxy {
     param(
         [array]$Name,
@@ -1879,7 +1838,6 @@ function Get-ZXProxy {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Get-ZXService {
     param(
         [string]$Name,
@@ -2043,7 +2001,6 @@ function Get-ZXService {
         }
 
 }
-
 function GEt-ZXSession {
     param(
         [securestring]$SessionID,
@@ -2125,7 +2082,6 @@ function GEt-ZXSession {
         }
      }
 }
-
 function Get-ZXTemplate {
     param(
         [array]$Name,
@@ -2278,7 +2234,6 @@ function Get-ZXTemplate {
     }
     
 }
-
 function Get-ZXTrigger {
     param(
         [array]$HostID,
@@ -2353,7 +2308,6 @@ function Get-ZXTrigger {
     }
 
 }
-
 function Get-ZXTriggerPrototype {
     param(
         [array]$HostID,
@@ -2496,7 +2450,6 @@ function Get-ZXTriggerPrototype {
     }
 
 }
-
 function Invoke-ZXTask {
     param(
         [array]$ItemID,
@@ -2527,9 +2480,6 @@ function Invoke-ZXTask {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
-
-
 function New-ZXHost {
     param(
         [object]$Properties,
@@ -2554,7 +2504,6 @@ function New-ZXHost {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function New-ZXLogonSession {
     param(
         [switch]$UserData,
@@ -2740,7 +2689,6 @@ function New-ZXLogonSession {
         }
     }   
 }
-
 function New-ZXProblemTagList {
 
     $Tags = [System.Collections.ArrayList]::new()
@@ -2767,8 +2715,6 @@ function New-ZXProblemTagList {
     return $object
     
 }
-
-
 function New-ZXService {
     param(
         [string]$Name,
@@ -2846,7 +2792,6 @@ function New-ZXService {
     }
 
 }
-
 function New-ZXTagFilter {
 
     $Tags = [System.Collections.ArrayList]::new()
@@ -2877,8 +2822,6 @@ function New-ZXTagFilter {
     return $object
     
 }
-
-
 function New-ZXTagList {
     $Tags = [System.Collections.ArrayList]::new()
 
@@ -2897,8 +2840,6 @@ function New-ZXTagList {
     }
     return $object
 }
-
-
 function New-ZXTokenSession{
     param(
         [switch]$Save,
@@ -3027,7 +2968,6 @@ function New-ZXTokenSession{
         }
      }
 }
-
 function Remove-ZXDiscoveryRule{
     param(
         [array]$LLDRuleID,
@@ -3059,9 +2999,6 @@ function Remove-ZXDiscoveryRule{
     }
    
 }
-
-
-
 function Remove-ZXHost{
     param(
         [array]$HostId,
@@ -3094,9 +3031,6 @@ function Remove-ZXHost{
     }
     
 }
-
-
-
 function Remove-ZXHostGroup {
     [CmdletBinding()]
     param (
@@ -3130,7 +3064,6 @@ function Remove-ZXHostGroup {
         Resolve-ZXApiResponse -Request $Request
     }   
 }
-
 function Remove-ZXHostNameSuffix{
     param(
         [string]$HostName,
@@ -3208,9 +3141,6 @@ function Remove-ZXHostNameSuffix{
         Resolve-ZXApiResponse -Request $Request
     }        
 }
-
-
-
 function Remove-ZXHostTag{
     param(
         [string]$HostName,
@@ -3302,9 +3232,6 @@ function Remove-ZXHostTag{
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
-
-
 function Remove-ZXItem{
     param(
         [array]$ItemId,
@@ -3337,9 +3264,6 @@ function Remove-ZXItem{
     }
     
 }
-
-
-
 function Remove-ZXMaintenance{
     param(
         [array]$MaintenanceId,
@@ -3370,9 +3294,6 @@ function Remove-ZXMaintenance{
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
-
-
 function Remove-ZXTrigger{
     param(
         [array]$TriggerId,
@@ -3405,9 +3326,6 @@ function Remove-ZXTrigger{
     }
     
 }
-
-
-
 function Remove-ZXTriggerPrototype{
     param(
         [array]$TriggerID,
@@ -3431,9 +3349,6 @@ function Remove-ZXTriggerPrototype{
         Resolve-ZXApiResponse -Request $Request
     }   
 }
-
-
-
 function Set-ZXHostLetterCase{
     param(
         [string]$HostName,
@@ -3527,7 +3442,6 @@ function Set-ZXHostLetterCase{
         return
     }    
 }
-
 function Set-ZXHostName{
     param(
         [string]$HostName,
@@ -3616,9 +3530,6 @@ function Set-ZXHostName{
     }
     
 }
-
-
-
 function Set-ZXHostStatus{
     param(
         [string]$HostId,
@@ -3671,9 +3582,6 @@ function Set-ZXHostStatus{
     }
     
 }
-
-
-
 function Stop-ZXSession {
     param(
         [string]$SessionID,
@@ -3712,7 +3620,6 @@ function Stop-ZXSession {
         Resolve-ZXApiResponse -Request $request
     }
 }
-
 function Update-ZXHostTagList{
     param(
         [string]$HostName,
@@ -3819,9 +3726,6 @@ function Update-ZXHostTagList{
     }
    
 }
-
-
-
 function Update-ZXHostTemplateList{
     param(
         [string]$HostId,
@@ -3879,9 +3783,6 @@ function Update-ZXHostTemplateList{
     }
     
 }
-
-
-
 function Update-ZXMaintenance {
     param(
         [array]$GroupID,
@@ -3916,7 +3817,6 @@ function Update-ZXMaintenance {
         Resolve-ZXApiResponse -Request $Request
     }
 }
-
 function Update-ZXService {
     param(
         [string]$ServiceID,
