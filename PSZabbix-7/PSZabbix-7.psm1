@@ -1082,7 +1082,7 @@ function Get-ZXHost {
  
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
 
-    $PSObj = New-ZXApiRequestObject -Method host.gett
+    $PSObj = New-ZXApiRequestObject -Method "host.get"
 
     
     #Add additional host parameters to the ps object based on the function parameters
