@@ -3563,8 +3563,6 @@ function Set-ZXHostStatus{
         }
         #Read the $ZXHost properties and use the values to fill in $PSobject properties. $PSobject is later converted to $json request
         $PSObj.params.hostid = $ZXHost.hostid
-        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
-        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "name" -Value $ZXHost.name
         $PSObj.params |  Add-Member -MemberType NoteProperty -Name "status" -Value $Status
     }
     
