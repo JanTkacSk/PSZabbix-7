@@ -1015,12 +1015,6 @@ function Get-ZXHost {
     )
 
     #Validate Parameters
-
-    
-    if ([string]::IsNullOrWhiteSpace($Name)) {
-        throw "AuthToken cannot be null or empty."
-    }
-
     if ($IncludeItems){
         If (!$ItemProperties){
             $ItemProperties = @("name","itemid","type","lastvalue","delay","master_itemid")
