@@ -962,16 +962,23 @@ function Get-ZXHost {
     param(
         [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
         [alias("Host","HostName")]
+        [ValidateNotNullOrEmpty()]
         [array]$Name,
         [alias("HostSearch","HostNameSearch")]
+        [ValidateNotNullOrEmpty()]
         [string]$NameSearch,
         [alias("VisibleName")]
+        [ValidateNotNullOrEmpty()]
         [string]$Alias,
         [alias("VisibleNameSearch")]
+        [ValidateNotNullOrEmpty()]
         [string]$AliasSearch,
+        [ValidateNotNullOrEmpty()]
         [string]$IPSearch,
+        [ValidateNotNullOrEmpty()]
         [string]$IP,
         [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
+        [ValidateNotNullOrEmpty()]
         [array]$HostID,
         [ValidateSet("0","1","Enabled","Disabled")]
         [string]$Status,
@@ -988,8 +995,11 @@ function Get-ZXHost {
         [switch]$WithItems,
         [switch]$IncludeInheritedTags,
         [switch]$IncludeTriggers,
+        [ValidateNotNullOrEmpty()]
         [array]$TemplateIDs,
+        [ValidateNotNullOrEmpty()]
         [array]$Tag,
+        [ValidateNotNullOrEmpty()]
         [array]$GroupIDs,
         [switch]$inheritedTags,
         [switch]$CountOutput,
@@ -1005,6 +1015,12 @@ function Get-ZXHost {
     )
 
     #Validate Parameters
+
+    
+    if ([string]::IsNullOrWhiteSpace($Name)) {
+        throw "AuthToken cannot be null or empty."
+    }
+
     if ($IncludeItems){
         If (!$ItemProperties){
             $ItemProperties = @("name","itemid","type","lastvalue","delay","master_itemid")
