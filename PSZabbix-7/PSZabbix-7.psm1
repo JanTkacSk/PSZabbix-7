@@ -1017,13 +1017,6 @@ function Get-ZXHost {
     )
 
     #Validate Parameters
-    If (-not $Name -and -not $HostID -and -not $NameSearch -and -not $Alias -and -not $AliasSearch -and -not $IP -and -not $IPSearch `
-        -and -not $TemplateIDs -and -not $GroupIDs -and -not $AllHosts){
-            throw "You must specify at least one of the following parameters: -Name or -HostID or -NameSearch or -Alias or -AliasSearch or -IP 
-            or -IPSearch or TemplateIDs or GroupIDs or AllHosts ."
-        }
-
-
     if ($IncludeItems){
         If (!$ItemProperties){
             $ItemProperties = @("name","itemid","type","lastvalue","delay","master_itemid")
