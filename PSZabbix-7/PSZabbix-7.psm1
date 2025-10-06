@@ -3538,25 +3538,17 @@ function Set-ZXHostStatus{
         [string]$Status,
         [switch]$WhatIf
     )
-    #Verify parameters
-    if ($HostName -and $HostId){
-        Write-Host -ForegroundColor Yellow 'Not allowed to use -HostName and -HostID parameters together'
-        continue
-    }
     
-    #Basic PS Object wich will be edited based on the used parameters and finally converted to json
-    $PSObj = New-ZXApiRequestObject -Method "host.update"
-    $PSObj | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
-
     switch ($Status) {
         "Enabled" {$Status = "0"}
         "Disabled" {$Status = "1"}
     }
-
-    #Read the $ZXHost properties and use the values to fill in $PSobject properties. $PSobject is later converted to $json request
-    $PSObj.params.hostid = $HostId
-    $PSObj.params |  Add-Member -MemberType NoteProperty -Name "status" -Value $Status
     
+    #Basic PS Object wich will be edited based on the used parameters and finally converted to json
+    $PSObj = New-ZXApiRequestObject -Method "host.update"
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
+    $PSObj.params |  Add-Member -MemberType NoteProperty -Name "status" -Value $Status
+
     $Json = $PSObj | ConvertTo-Json -Depth 5
 
     #Show JSON Request if -Whatif switch is used
