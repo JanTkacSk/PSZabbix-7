@@ -57,7 +57,8 @@
             refactored Update-ZXHostTagList,
             refactored Update-ZXHostTemplateList,
             refactored Update-ZXMaintenance,
-            refactored Update-ZXService'
+            refactored Update-ZXService
+            added [ValidateNotNullOrEmpty()] to Get-ZXHost parameters'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }
