@@ -3553,18 +3553,9 @@ function Set-ZXHostStatus{
         "Disabled" {$Status = "1"}
     }
 
-    if($Status){
-        $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
-        if($null -eq $ZXHost.hostid){
-            Write-Host -ForegroundColor Yellow "[Not Found]" -NoNewline
-            Write-Host " $HostId"
-            $LogObject.HostsNotFound += $HostId
-            Continue
-        }
-        #Read the $ZXHost properties and use the values to fill in $PSobject properties. $PSobject is later converted to $json request
-        $PSObj.params.hostid = $ZXHost.hostid
-        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "status" -Value $Status
-    }
+    #Read the $ZXHost properties and use the values to fill in $PSobject properties. $PSobject is later converted to $json request
+    $PSObj.params.hostid = $HostId
+    $PSObj.params |  Add-Member -MemberType NoteProperty -Name "status" -Value $Status
     
     $Json = $PSObj | ConvertTo-Json -Depth 5
 
