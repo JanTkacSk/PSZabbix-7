@@ -1003,7 +1003,7 @@ function Get-ZXHost {
         [array]$GroupIDs,
         [switch]$inheritedTags,
         [switch]$CountOutput,
-        [swithc]$AllHosts,
+        [switch]$AllHosts,
         [array]$Output,
         [ValidateNotNullOrEmpty()]
         [int]$Limit,
