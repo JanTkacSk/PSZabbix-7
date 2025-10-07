@@ -51,8 +51,8 @@
             refactored Remove-ZXDiscoveryRule x ,
             refactored Remove-ZXHostGroup x,
             refactored Remove-ZXHostTag x,
-            refactored Remove-ZXMaintenance,
-            refactored Remove-ZXTriggerPrototype,
+            refactored Remove-ZXMaintenance x,
+            refactored Remove-ZXTriggerPrototype x,
             refactored Set-ZXHostLetterCase,
             refactored Set-ZXHostName
             refactored Set-ZXHostStatus,

@@ -3368,7 +3368,7 @@ function Set-ZXHostLetterCase{
     
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "host.update"
-    $PSObj | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
 
     if($HostId){
         $ZXHost = Get-ZXHost -HostID $HostId
@@ -3462,7 +3462,7 @@ function Set-ZXHostName{
 
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "host.update"
-    $PSObj | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
 
     if($NewHostName){
 
