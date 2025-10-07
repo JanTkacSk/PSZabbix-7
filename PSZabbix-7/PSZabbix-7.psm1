@@ -3051,7 +3051,7 @@ function Remove-ZXHost{
     }
     
 }
-function Remove-ZXHostGroup {
+function Remove-ZXHostFromGroup {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$false)]
@@ -3924,7 +3924,7 @@ Export-ModuleMember -Function `
     New-ZXTokenSession, `
     Remove-ZXDiscoveryRule, `
     Remove-ZXHost, `
-    Remove-ZXHostGroup, `
+    Remove-ZXHostFromGroup, `
     Remove-ZXHostNameSuffix, `
     Remove-ZXHostTag, `
     Remove-ZXItem, `
