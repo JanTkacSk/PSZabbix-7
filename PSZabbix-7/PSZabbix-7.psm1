@@ -3650,7 +3650,7 @@ function Update-ZXHostTemplateList{
 function Update-ZXMaintenance {
     param(
         [array]$GroupID,
-        [array]$HostIDReplace,
+        [array]$HostID,
         [string]$MaintenanceID,
         [switch]$WhatIf
     )
@@ -3658,8 +3658,8 @@ function Update-ZXMaintenance {
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "maintenance.update"
 
-    if ($HostIDReplace){
-        $HostIDObjects = ConvertArrayToObjects -PropertyName "hostid" -Array $HostIDReplace
+    if ($HostID){
+        $HostIDObjects = ConvertArrayToObjects -PropertyName "hostid" -Array $HostID
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "hosts" -Value @($HostIDObjects)
     }
     if ($GroupID){
