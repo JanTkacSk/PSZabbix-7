@@ -42,12 +42,14 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'New-ZXTokenSession - bugfix,
-            renamed Copy-ZXHostParameters to Copy-ZXHostProperties,
-            removed Stop-ZXSession,
+            ReleaseNotes = 'New-ZXTokenSession - bugfix x,
+            renamed Copy-ZXHostParameters to Copy-ZXHostProperties x,
+            renamed Remove-ZXHostGroup to Remove-ZXHostFromGroup x,
+            renamed Add-ZXHostGroup to Add-ZXHostToGroup x,
+            removed Stop-ZXSession x,
             refactored Copy-ZXHostProperties x ,
             refactored Remove-ZXDiscoveryRule x ,
-            refactored Remove-ZXHostGroup and renamed it to Remove-ZXHostFromGroup x,
+            refactored Remove-ZXHostGroup x,
             refactored Remove-ZXHostTag,
             refactored Remove-ZXMaintenance,
             refactored Remove-ZXTriggerPrototype,

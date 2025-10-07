@@ -115,7 +115,7 @@ function ConvertArrayToObjects_ZXTask($PropertyName,$Array){
     return
 }
 # -------------------------------------------------Public Functions------------------------------------------------- #
-function Add-ZXHostGroup {
+function Add-ZXHostToGroup {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
@@ -3889,7 +3889,7 @@ function Update-ZXService {
     
 }
 Export-ModuleMember -Function `
-    Add-ZXHostGroup, `
+    Add-ZXHostToGroup, `
     Add-ZXHostNameSuffix, `
     Add-ZXHostTag, `
     Copy-ZXHostProperties, `
