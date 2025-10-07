@@ -3701,7 +3701,7 @@ function Update-ZXService {
 
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "service.update"
-    $PSObj | Add-Member -MemberType NoteProperty -Name "serviceid" -Value $ServiceID
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "serviceid" -Value $ServiceID
 
     #Add Parameters based on function parameters
     if ($Parameters) {
