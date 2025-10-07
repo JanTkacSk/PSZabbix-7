@@ -97,6 +97,18 @@ function ConvertTo-UnixTime{
 function ConvertArrayToObjects($PropertyName,$Array){
     $Result = @()
     foreach ($item in $Array){
+        $Result += @{
+            "request"=[PSCustomObject]@{
+                "$PropertyName" = "$item"
+            }
+        }
+    }
+    $Result
+    return
+}
+function ConvertArrayToObjectsV2($PropertyName,$Array){
+    $Result = @()
+    foreach ($item in $Array){
         $Result += @{"type"="6";
             "request"=[PSCustomObject]@{
                 "$PropertyName" = "$item"
