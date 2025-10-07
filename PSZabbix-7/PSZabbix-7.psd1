@@ -42,24 +42,24 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'New-ZXTokenSession - bugfix x,
-            renamed Copy-ZXHostParameters to Copy-ZXHostProperties x,
-            renamed Remove-ZXHostGroup to Remove-ZXHostFromGroup x,
-            renamed Add-ZXHostGroup to Add-ZXHostToGroup x,
-            removed Stop-ZXSession from exported functions x,
+            ReleaseNotes = 'New-ZXTokenSession - bugfix,
+            renamed Copy-ZXHostParameters to Copy-ZXHostProperties,
+            renamed Remove-ZXHostGroup to Remove-ZXHostFromGroup,
+            renamed Add-ZXHostGroup to Add-ZXHostToGroup,
+            removed Stop-ZXSession from exported functions,
             removed Update-ZXHostTagList,
-            refactored Copy-ZXHostProperties x ,
-            refactored Remove-ZXDiscoveryRule x ,
-            refactored Remove-ZXHostGroup x,
-            refactored Remove-ZXHostTag x,
-            refactored Remove-ZXMaintenance x,
-            refactored Remove-ZXTriggerPrototype x,
-            refactored Set-ZXHostLetterCase x,
-            refactored Set-ZXHostName x
-            refactored Set-ZXHostStatus x,
-            refactored Update-ZXHostTemplateList x,
-            refactored Update-ZXMaintenance x,
-            refactored Update-ZXService
+            refactored Copy-ZXHostProperties,
+            refactored Remove-ZXDiscoveryRule,
+            refactored Remove-ZXHostGroup,
+            refactored Remove-ZXHostTag,
+            refactored Remove-ZXMaintenance,
+            refactored Remove-ZXTriggerPrototype,
+            refactored Set-ZXHostLetterCase,
+            refactored Set-ZXHostName,
+            refactored Set-ZXHostStatus,
+            refactored Update-ZXHostTemplateList,
+            refactored Update-ZXMaintenance,
+            refactored Update-ZXService,
             added [ValidateNotNullOrEmpty()] to Get-ZXHost parameters'
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
