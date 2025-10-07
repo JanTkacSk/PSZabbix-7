@@ -97,16 +97,12 @@ function ConvertTo-UnixTime{
 function ConvertArrayToObjects($PropertyName,$Array){
     $Result = @()
     foreach ($item in $Array){
-        $Result += @{
-            "request"=[PSCustomObject]@{
-                "$PropertyName" = "$item"
-            }
-        }
+        $Result += @{$PropertyName = "$item"}
     }
     $Result
     return
 }
-function ConvertArrayToObjectsV2($PropertyName,$Array){
+function ConvertArrayToObjects_ZXTask($PropertyName,$Array){
     $Result = @()
     foreach ($item in $Array){
         $Result += @{"type"="6";
@@ -2486,7 +2482,7 @@ function Invoke-ZXTask {
     $PSObj = New-ZXApiRequestObject -Method "task.create"
 
     if($ItemID){
-        $TaskObjects = ConvertArrayToObjects -PropertyName "itemid" -Array $ItemID
+        $TaskObjects = ConvertArrayToObjects_ZXTask -PropertyName "itemid" -Array $ItemID
         $PSObj.params = @($TaskObjects)
     }
 
