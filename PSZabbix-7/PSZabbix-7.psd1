@@ -50,7 +50,7 @@
             refactored Copy-ZXHostProperties x ,
             refactored Remove-ZXDiscoveryRule x ,
             refactored Remove-ZXHostGroup x,
-            refactored Remove-ZXHostTag,
+            refactored Remove-ZXHostTag x,
             refactored Remove-ZXMaintenance,
             refactored Remove-ZXTriggerPrototype,
             refactored Set-ZXHostLetterCase,
