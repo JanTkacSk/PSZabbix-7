@@ -46,17 +46,17 @@
             renamed Copy-ZXHostParameters to Copy-ZXHostProperties x,
             renamed Remove-ZXHostGroup to Remove-ZXHostFromGroup x,
             renamed Add-ZXHostGroup to Add-ZXHostToGroup x,
-            removed Stop-ZXSession x,
+            removed Stop-ZXSession from exported functions x,
+            removed Update-ZXHostTagList,
             refactored Copy-ZXHostProperties x ,
             refactored Remove-ZXDiscoveryRule x ,
             refactored Remove-ZXHostGroup x,
             refactored Remove-ZXHostTag x,
             refactored Remove-ZXMaintenance x,
             refactored Remove-ZXTriggerPrototype x,
-            refactored Set-ZXHostLetterCase,
-            refactored Set-ZXHostName
-            refactored Set-ZXHostStatus,
-            refactored Update-ZXHostTagList,
+            refactored Set-ZXHostLetterCase x,
+            refactored Set-ZXHostName x
+            refactored Set-ZXHostStatus x,
             refactored Update-ZXHostTemplateList,
             refactored Update-ZXMaintenance,
             refactored Update-ZXService
