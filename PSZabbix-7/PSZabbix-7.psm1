@@ -3797,7 +3797,6 @@ Export-ModuleMember -Function `
     Set-ZXHostLetterCase, `
     Set-ZXHostName, `
     Set-ZXHostStatus, `
-    Update-ZXHostTagList, `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `
     Update-ZXService
