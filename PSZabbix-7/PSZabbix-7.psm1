@@ -3163,7 +3163,6 @@ function Remove-ZXHostNameSuffix{
 }
 function Remove-ZXHostTag{
     param(
-        [string]$HostName,
         [string]$HostId,
         [string]$TagName,
         [string]$TagValue,
@@ -3173,24 +3172,6 @@ function Remove-ZXHostTag{
         [switch]$Force
     )
     #Validate Parameters
-    if ($HostId -and $HostName){
-    Write-Host -ForegroundColor Red 'You cannot use -HostId and -HostName parameter at the same time'
-    continue
-    }
-
-    if ($HostId){
-        If ($HostId.GetType().Name -ne "String"){
-            Write-Host -ForegroundColor Red "HostId must be a String, your input is $($HostId.GetType().Name)"
-            continue
-        }
-    }
-    elseif($HostName){
-            If ($HostName.GetType().Name -ne "String"){
-            Write-Host -ForegroundColor Red "HostName must be a String, your input is $($HostId.GetType().Name)"
-            continue
-        }
-    }
-
     if($TagName -and -not $TagValue -and -not $Force ) {
         Write-Host -ForegroundColor Yellow "'TagValue' parameter was not specified. This will remove all $TagName tags regardless of the value. Continue ?"
         Pause    
@@ -3198,24 +3179,17 @@ function Remove-ZXHostTag{
    
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "host.update"
-    $PSObj | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
 
     if($TagName -or $RemoveAllTags){
        
-        if($HostId){
-            $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
-        }
-        elseif ($HostName){
-            $ZXHost = Get-ZXHost -Name $HostName -IncludeTags
-        }
+
+        $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
 
         if($ZXHost -eq $null){
         Write-Host -ForegroundColor Yellow "Host not found"
         continue
         }
-    
-
-        $PSObj.params.hostid = $ZXHost.hostid
         $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
         $PSObj.params |  Add-Member -MemberType NoteProperty -Name "name" -Value $ZXHost.name
         [System.Collections.ArrayList]$TagList = $ZXHost.tags
