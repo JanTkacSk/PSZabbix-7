@@ -3609,9 +3609,9 @@ function Update-ZXHostTemplateList{
     $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" -Value $HostId
 
     if($LinkTemplateID -or $UnlinkTemplateID){
-        $ZXHost = Get-ZXHost -HostID $HostId -IncludeParentTemplates -ItemProperties templateid
+        $ZXHost = Get-ZXHost -HostID $HostId -IncludeParentTemplates 
         $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
-        $TemplateList = $ZXHost.ParentTemplates
+        $TemplateList = $ZXHost.ParentTemplates | Select-Object templateid
 
         if($LinkTemplateID){
             $TemplateList =  $TemplateList += @{"templateid"= $LinkTemplateID}

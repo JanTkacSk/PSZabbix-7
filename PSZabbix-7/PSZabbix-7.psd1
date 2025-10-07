@@ -57,7 +57,7 @@
             refactored Set-ZXHostLetterCase x,
             refactored Set-ZXHostName x
             refactored Set-ZXHostStatus x,
-            refactored Update-ZXHostTemplateList,
+            refactored Update-ZXHostTemplateList*,
             refactored Update-ZXMaintenance,
             refactored Update-ZXService
             added [ValidateNotNullOrEmpty()] to Get-ZXHost parameters'
