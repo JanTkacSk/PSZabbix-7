@@ -3,7 +3,7 @@
     RootModule = 'PSZabbix-7.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.6'
+    ModuleVersion = '0.0.7'
 
     # ID used to uniquely identify this module
     GUID = 'd3e66cb0-4c68-4f07-9d70-b92a15a26c7a'
@@ -42,25 +42,9 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'New-ZXTokenSession - bugfix,
-            renamed Copy-ZXHostParameters to Copy-ZXHostProperties,
-            renamed Remove-ZXHostGroup to Remove-ZXHostFromGroup,
-            renamed Add-ZXHostGroup to Add-ZXHostToGroup,
-            removed Stop-ZXSession from exported functions,
-            removed Update-ZXHostTagList,
-            refactored Copy-ZXHostProperties,
-            refactored Remove-ZXDiscoveryRule,
-            refactored Remove-ZXHostGroup,
-            refactored Remove-ZXHostTag,
-            refactored Remove-ZXMaintenance,
-            refactored Remove-ZXTriggerPrototype,
-            refactored Set-ZXHostLetterCase,
-            refactored Set-ZXHostName,
-            refactored Set-ZXHostStatus,
-            refactored Update-ZXHostTemplateList,
-            refactored Update-ZXMaintenance,
-            refactored Update-ZXService,
-            added [ValidateNotNullOrEmpty()] to Get-ZXHost parameters'
+            ReleaseNotes = 'Refactored Add-ZXHostTag - added nulloremplty validation to -hostid,
+            removed write-host no data if no host was found, there will be standard api error reply
+            '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
         }
