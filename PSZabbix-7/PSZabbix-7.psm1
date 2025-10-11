@@ -267,6 +267,7 @@ function Add-ZXHostNameSuffix{
 }
 function Add-ZXHostTag{
     param(
+        [ValidateNotNullOrEmpty()]
         [string]$HostId,
         [string]$TagName, 
         [string]$TagValue,
@@ -278,19 +279,15 @@ function Add-ZXHostTag{
     
     $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
 
-    if($ZXHost -eq $null){
-        Write-Host -ForegroundColor Yellow "Host not found"
-        continue
-    }
-
     $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostid" $HostId
     
     #Get the list of host tags.
-    [System.Collections.ArrayList]$TagList = $ZXHost.tags
+    if ($ZXHost){
+        [System.Collections.ArrayList]$TagList = $ZXHost.tags
+        $TagList =  $TagList += [PSCustomObject]@{"tag"= $TagName; "value"=$TagValue}
+        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "tags" -Value @($TagList)
 
-    $TagList =  $TagList += [PSCustomObject]@{"tag"= $TagName; "value"=$TagValue}
-
-    $PSObj.params |  Add-Member -MemberType NoteProperty -Name "tags" -Value @($TagList)
+    }
 
     $Json = $PSObj | ConvertTo-Json -Depth 5
 
