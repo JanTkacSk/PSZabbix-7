@@ -3812,7 +3812,7 @@ function Get-ZXUserMacro {
         AddFilter -PropertyName "macro" -PropertyValue $Macro
     }
     if ($Value){
-        AddFilter -PropertyName "macro" -PropertyValue $Value
+        AddFilter -PropertyName "value" -PropertyValue $Value
     }
     if ($Inherited){
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "inherited" -Value "true"
