@@ -1285,6 +1285,8 @@ function Get-ZXHostInterface {
         [array]$HostID,
         [array]$ItemProperties,
         [switch]$IncludeItems,
+        [switch]$IncludeHosts,
+        [array]$HostProperties,
         [int]$Limit,
         [int]$Type,
         [switch]$WhatIf,
@@ -1298,6 +1300,15 @@ function Get-ZXHostInterface {
         }
         elseif($ItemProperties -contains "extend"){
             [string]$ItemProperties = "extend"
+        }    
+    }
+
+    if ($IncludeHosts){
+        If (!$HostProperties){
+            $HostProperties = @("name")
+        }
+        elseif($HostProperties -contains "extend"){
+            [string]$HostProperties = "extend"
         }    
     }
    
@@ -1315,6 +1326,9 @@ function Get-ZXHostInterface {
     }
     if ($IncludeItems) {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "selectItems" -Value $ItemProperties
+    }
+    if ($IncludeHosts) {
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "selectHosts" -Value $HostProperties
     }
     #Return only output count
     if($CountOutput){
