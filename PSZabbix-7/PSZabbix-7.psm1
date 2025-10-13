@@ -3767,6 +3767,8 @@ function Get-ZXUserMacro {
         [array]$HostID,
         [array]$HostGroupID,
         [array]$TemplateID,
+        [string]$Macro,
+        [string]$Value,
         [string]$Description,
         [array]$Output,
         [switch]$IncludeHosts,
@@ -3805,6 +3807,12 @@ function Get-ZXUserMacro {
     }
     if ($Description){
         AddFilter -PropertyName "description" -PropertyValue $Description
+    }
+    if ($Macro){
+        AddFilter -PropertyName "macro" -PropertyValue $Macro
+    }
+    if ($Value){
+        AddFilter -PropertyName "macro" -PropertyValue $Value
     }
     if ($Inherited){
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "inherited" -Value "true"
