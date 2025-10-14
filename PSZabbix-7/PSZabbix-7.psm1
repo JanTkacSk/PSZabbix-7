@@ -3198,14 +3198,11 @@ function Remove-ZXHostTag{
 
         $ZXHost = Get-ZXHost -HostID $HostId -IncludeTags
 
-        if($ZXHost -eq $null){
-        Write-Host -ForegroundColor Yellow "Host not found"
-        continue
+        if($ZXHost){
+            $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
+            $PSObj.params |  Add-Member -MemberType NoteProperty -Name "name" -Value $ZXHost.name
+            [System.Collections.ArrayList]$TagList = $ZXHost.tags
         }
-        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
-        $PSObj.params |  Add-Member -MemberType NoteProperty -Name "name" -Value $ZXHost.name
-        [System.Collections.ArrayList]$TagList = $ZXHost.tags
-
         if($TagName){
             if (!$TagValue){                
                 $TagList.Remove(($TagList|Where-Object {$_.tag -ceq $TagName}))
