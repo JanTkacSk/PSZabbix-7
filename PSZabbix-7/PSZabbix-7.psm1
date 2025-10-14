@@ -3215,7 +3215,6 @@ function Remove-ZXHostTag{
                 }
             }
         }
-
         
         if($RemoveAllTags){
             $TagList = @()
