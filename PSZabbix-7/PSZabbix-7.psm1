@@ -3170,8 +3170,9 @@ function Remove-ZXHostTag{
     )
     #Validate Parameters
     if($TagName -and -not $TagValue -and -not $Force ) {
-        Write-Host -ForegroundColor Yellow "'TagValue' parameter was not specified. This will remove all $TagName tags regardless of the value. Continue ?"
-        Pause    
+        Write-Host -ForegroundColor Yellow "You have used -TagName without value. 
+        To remove all tags with the given name regardless of the value use [ -Force ] parameter"
+        return  
     }
    
     #Basic PS Object wich will be edited based on the used parameters and finally converted to json
