@@ -3186,8 +3186,8 @@ function Remove-ZXHostTag{
     )
     #Validate Parameters
     if($TagName -and -not $TagValue -and -not $Force ) {
-        Write-Host -ForegroundColor Yellow 
-        "You have used [-TagName] without value. 
+        Write-Host -ForegroundColor Yellow "
+        You have used [-TagName] without [-TagValue]]. 
         To remove all tags with the given name regardless of the value use [-Force] parameter"
         return  
     }
