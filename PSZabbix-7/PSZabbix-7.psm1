@@ -269,6 +269,7 @@ function Add-ZXHostTag{
     param(
         [ValidateNotNullOrEmpty()]
         [string]$HostId,
+        [ValidateNotNullOrEmpty()]
         [string]$TagName, 
         [string]$TagValue,
         [switch]$WhatIf
@@ -3174,18 +3175,20 @@ function Remove-ZXHostNameSuffix{
 }
 function Remove-ZXHostTag{
     param(
+        [ValidateNotNullOrEmpty()]
         [string]$HostId,
+        [ValidateNotNullOrEmpty()]
         [string]$TagName,
         [string]$TagValue,
         [switch]$RemoveAllTags,
         [switch]$WhatIf,
-        [Alias("f")]
         [switch]$Force
     )
     #Validate Parameters
     if($TagName -and -not $TagValue -and -not $Force ) {
-        Write-Host -ForegroundColor Yellow "You have used -TagName without value. 
-        To remove all tags with the given name regardless of the value use [ -Force ] parameter"
+        Write-Host -ForegroundColor Yellow 
+        "You have used [-TagName] without value. 
+        To remove all tags with the given name regardless of the value use [-Force] parameter"
         return  
     }
    
