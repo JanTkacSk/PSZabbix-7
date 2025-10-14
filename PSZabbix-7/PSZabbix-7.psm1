@@ -3205,17 +3205,17 @@ function Remove-ZXHostTag{
             $PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
             $PSObj.params |  Add-Member -MemberType NoteProperty -Name "name" -Value $ZXHost.name
             [System.Collections.ArrayList]$TagList = $ZXHost.tags
-        }
-        if($TagName){
-            if (!$TagValue){                
-                $TagList.Remove(($TagList|Where-Object {$_.tag -ceq $TagName}))
+            if($TagName){
+                if (!$TagValue){                
+                    $TagList.Remove(($TagList|Where-Object {$_.tag -ceq $TagName}))
 
-
-            }
-            if($TagValue){
-                $TagList.Remove(($TagList|Where-Object {$_.tag -ceq $TagName -and $_.value -ceq $TagValue}))
+                }
+                if($TagValue){
+                    $TagList.Remove(($TagList|Where-Object {$_.tag -ceq $TagName -and $_.value -ceq $TagValue}))
+                }
             }
         }
+
         
         if($RemoveAllTags){
             $TagList = @()
