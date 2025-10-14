@@ -42,7 +42,9 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Refactored Add-ZXHostTag - added nulloremplty validation to -hostid,
+            ReleaseNotes = 'Refactored Add-ZXHostTag - added nulloremplty validation for -HostID and -TagName,
+            Refactored Remove-ZXHostTag - added nulloremplty validation for -HostID and -TagName
+            and prevented using -TagName without using -TagValue or -Force,
             removed write-host no data if no host was found, there will be standard api error reply
             added Get-ZXUserMacro,
             '
