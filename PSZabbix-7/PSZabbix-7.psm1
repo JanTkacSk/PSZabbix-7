@@ -3837,6 +3837,124 @@ function Get-ZXUserMacro {
     }
 
 }
+Function Invoke-ZXAddHostTagLoop{
+    param(
+        [array]$HostName,
+        [string]$TagName,
+        [string]$TagValue,
+        [switch]$WhatIf
+    )
+    $script:Result = @()
+    $DateTime = Get-Date -F 'yyyyMMddHHmmss'
+    $TranscriptPath = "$Home\Documents\$($MyInvocation.MyCommand.name).Transcript.$DateTime.txt"
+    Start-Transcript -LiteralPath $TranscriptPath
+    
+    $FoundHosts = Get-ZXHost -HostName $HostName -Output host
+    function AddHostTags{
+        $FoundHost = $FoundHosts | Where-Object {$_.host -eq $HostName[$i]}
+        $HostID = $FoundHost.hostid
+        if ($WhatIf){
+            Add-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue -Whatif
+            continue
+        }
+        if (-not $WhatIf -and $FoundHost){
+            $AddTag = Add-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue
+            if ($AddTag.hostids){
+                $Data = $AddTag.hostids
+                $Status = "Success"
+            }elseif($AddTag.error){
+                $Data = $AddTag.error.data
+                $Status = "Error"
+            } 
+        }elseif(-not $FoundHost){
+            $Data = "Host not found"
+            $Status = "Error"
+        }
+                  
+        ($IterationResult = [PSCustomObject]@{
+            "Index" = $i;
+            "ZXHost" = $HostName[$i];
+            "TagName" = $TagName;
+            "TagValue" = $TagValue;
+            "Status" = $Status;         
+            "ResultData" = $Data;
+        }) | Select-Object Index,ZXHost,ResultData
+        $script:Result += $IterationResult
+
+    }
+    
+    for ($i=0; $i -lt $HostName.count; $i++){
+        AddHostTags
+    }
+    $ResultPath = "$Home\Documents\$($MyInvocation.MyCommand.name).$DateTime.json"
+    $Result | ConvertTo-Json -Depth 5 | Out-File $ResultPath
+    Write-Host "Output json object is written in $ResultPath"
+    Stop-Transcript
+}
+Function Invoke-ZXRemoveHostTagLoop{
+    param(
+        [array]$HostName,
+        [string]$TagName,
+        [string]$TagValue=$null,
+        [switch]$WhatIf,
+        [switch]$Force
+    )
+
+    if ($TagName -and -not $TagValue -and -not $Force){
+        Write-Host -ForegroundColor Yellow "You have used [-TagName] without [-TagValue]"
+        Write-Host -ForegroundColor Yellow "To remove all tags with the given name regardless of the value use [-Force] parameter"
+        return
+    }
+
+    $script:Result = @()
+    $DateTime = Get-Date -F 'yyyyMMddHHmmss'
+    $TranscriptPath = "$Home\Documents\$($MyInvocation.MyCommand.name).Transcript.$DateTime.txt"
+    Start-Transcript -LiteralPath $TranscriptPath
+    
+    $FoundHosts = Get-ZXHost -HostName $HostName -Output host
+
+    function AddHostTags{
+        $FoundHost = $FoundHosts | Where-Object {$_.host -eq $HostName[$i]}
+        $HostID = $FoundHost.hostid
+        if ($WhatIf){
+            Remove-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue -Force -WhatIf
+            continue
+        }
+        If(-not $Whatif -and $FoundHost){
+            $RemoveTag = Remove-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue -Force
+            if ($RemoveTag.hostids){
+                $Data = $RemoveTag.hostids
+                $Status = "Success"
+            }elseif($RemoveTag.error){
+                $Data = $RemoveTag.error.data
+                $Status = "Error"
+            } 
+        }elseif(-not $FoundHost){
+            $Data = "Host not found"
+            $Status = "Error"
+        }
+                      
+        ($IterationResult = [PSCustomObject]@{
+            "Index" = $i;
+            "ZXHost" = $HostName[$i];
+            "TagName" = $TagName;
+            "TagValue" = $TagValue;
+            "Status" = $Status;         
+            "ResultData" = $Data;
+        }) | Select-Object Index,ZXHost,ResultData
+        $script:Result += $IterationResult
+
+    }
+    
+    for ($i=0; $i -lt $HostName.count; $i++){
+        AddHostTags
+    }
+    $ResultPath = "$Home\Documents\$($MyInvocation.MyCommand.name).$DateTime.json"
+    $Result | ConvertTo-Json -Depth 5 | Out-File $ResultPath
+    Write-Host "Output json object is written in $ResultPath"
+    Stop-Transcript
+}
+
 Export-ModuleMember -Function `
     Add-ZXHostToGroup, `
     Add-ZXHostNameSuffix, `
