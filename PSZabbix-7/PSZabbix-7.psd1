@@ -46,7 +46,9 @@
             Refactored Remove-ZXHostTag - added nulloremplty validation for -HostID and -TagName
             and prevented using -TagName without using -TagValue or -Force,
             removed write-host no data if no host was found, there will be standard api error reply
-            added Get-ZXUserMacro,
+            added Get-ZXUserMacro
+            added Invoke-ZXAddHostTagLoop
+            added Invoke-ZXRemoveHostTagLoop,
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
