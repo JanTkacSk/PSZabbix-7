@@ -42,8 +42,8 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Invoke-ZXAddHostTagLoop bugfix,
-            Invoke-ZXRemoveHostTagLoop bugfix
+            ReleaseNotes = 'Invoke-ZXAddHostTagLoop renamed to Add-ZXHostTagLoop,
+            Invoke-ZXRemoveHostTagLoop bugfix renamed to Remove-ZXHostTagLoop
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
