@@ -24,58 +24,7 @@
     PowerShellVersion = '5.1'
 
     # Functions to export from this module
-    FunctionsToExport = 'Add-ZXHostToGroup,
-    Add-ZXHostNameSuffix,
-    Add-ZXHostTag,
-    Copy-ZXHostProperties,
-    Disable-ZXTrigger,
-    Enable-ZXTrigger,
-    Get-ZXAction,
-    Get-ZXAlert,
-    Get-ZXApiVersion,
-    Get-ZXAuditLog,
-    Get-ZXDiscoveryRule,
-    Get-ZXEvent,
-    Get-ZXHistory,
-    Get-ZXHost,
-    Get-ZXHostGroup,
-    Get-ZXHostInterface,
-    Get-ZXItem,
-    Get-ZXItemPrototype,
-    Get-ZXMaintenance,
-    Get-ZXProblem,
-    Get-ZXProxy,
-    Get-ZXService,
-    GEt-ZXSession,
-    Get-ZXTemplate,
-    Get-ZXTrigger,
-    Get-ZXTriggerPrototype,
-    Get-ZXUserMacro,
-    Invoke-ZXTask,
-    Invoke-ZXAddHostTagLoop,
-    Invoke-ZXRemoveHostTagLoop,
-    New-ZXHost,
-    New-ZXProblemTagList,
-    New-ZXService,
-    New-ZXTagFilter,
-    New-ZXTagList,
-    New-ZXTokenSession,
-    Remove-ZXDiscoveryRule,
-    Remove-ZXHost,
-    Remove-ZXHostFromGroup,
-    Remove-ZXHostNameSuffix,
-    Remove-ZXHostTag,
-    Remove-ZXItem,
-    Remove-ZXMaintenance,
-    Remove-ZXTrigger,
-    Remove-ZXTriggerPrototype,
-    Set-ZXHostLetterCase,
-    Set-ZXHostName,
-    Set-ZXHostStatus,
-    Update-ZXHostTemplateList,
-    Update-ZXMaintenance,
-    Update-ZXService
-'
+    FunctionsToExport = '*'
 
     # Cmdlets to export from this module
     CmdletsToExport = '*'
@@ -93,13 +42,8 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Refactored Add-ZXHostTag - added nulloremplty validation for -HostID and -TagName,
-            Refactored Remove-ZXHostTag - added nulloremplty validation for -HostID and -TagName
-            and prevented using -TagName without using -TagValue or -Force,
-            removed write-host no data if no host was found, there will be standard api error reply
-            added Get-ZXUserMacro
-            added Invoke-ZXAddHostTagLoop
-            added Invoke-ZXRemoveHostTagLoop,
+            ReleaseNotes = 'Invoke-ZXAddHostTagLoop bugfix,
+            Invoke-ZXRemoveHostTagLoop bugfix
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
