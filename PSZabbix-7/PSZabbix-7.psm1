@@ -3837,7 +3837,7 @@ function Get-ZXUserMacro {
     }
 
 }
-Function Invoke-ZXAddHostTagLoop{
+Function Add-ZXHostTagLoop{
     param(
         [array]$HostName,
         [string]$TagName,
@@ -3891,7 +3891,7 @@ Function Invoke-ZXAddHostTagLoop{
     Write-Host "Output json object is written in $ResultPath"
     Stop-Transcript
 }
-Function Invoke-ZXRemoveHostTagLoop{
+Function Remove-ZXHostTagLoop{
     param(
         [array]$HostName,
         [string]$TagName,
@@ -3984,8 +3984,8 @@ Export-ModuleMember -Function `
     Get-ZXTriggerPrototype, `
     Get-ZXUserMacro, `
     Invoke-ZXTask, `
-    Invoke-ZXAddHostTagLoop, `
-    Invoke-ZXRemoveHostTagLoop, `
+    Add-ZXHostTagLoop, `
+    Remove-ZXHostTagLoop, `
     New-ZXHost, `
     New-ZXProblemTagList, `
     New-ZXService, `
