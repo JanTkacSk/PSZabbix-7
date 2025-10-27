@@ -2274,6 +2274,8 @@ function Get-ZXTrigger {
         [array]$HostGroupID,
         [array]$TemplateID,
         [array]$Output,
+        [ValidateNotNullOrEmpty()]
+        [array]$Tag,
         [string]$Description,
         [switch]$IncludeHosts,
         [switch]$IncludeHostGroups,
@@ -2281,6 +2283,7 @@ function Get-ZXTrigger {
         [switch]$IncludeTags,
         [switch]$IncludeFunctions,
         [switch]$IncludeDependencies,
+        [switch]$CountOutput,
         [switch]$WhatIf,        
         [string]$Limit
     )
@@ -2323,6 +2326,14 @@ function Get-ZXTrigger {
     }
     if($Limit){
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "limit" -Value $Limit
+    }
+    # Possible operator values:  0 - (default) Contains; 1 - Equals; 2 - Not like; 3 - Not equal; 4 - Exists; 5 - Not exists.
+    if($Tag){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "tags" -Value $Tag
+    }
+    #Return only output count
+    if($CountOutput){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "countOutput" -Value "true"
     }
 
     $PSObj.params | Add-Member -MemberType NoteProperty -Name "output" -Value $Output
