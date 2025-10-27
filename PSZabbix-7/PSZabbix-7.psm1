@@ -700,7 +700,7 @@ function Get-ZXDiscoveryRule {
         [string]$Type,
         [string]$TypeSearch,
         [array]$Name,
-        [array]$TemplateID,
+        [array]$TemplateIDs,
         [string]$TemplateIDFilter,
         [string]$TemplateIDSearch,
         [array]$Tag,
@@ -778,8 +778,8 @@ function Get-ZXDiscoveryRule {
     if ($GroupID) {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "groupids" -Value @($GroupIDs)
     }
-    if ($TemplateID) {
-        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateID)
+    if ($TemplateIDs) {
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateIDs)
     }
     if($Limit){
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "limit" -Value $Limit
@@ -1003,7 +1003,7 @@ function Get-ZXHost {
         [switch]$IncludeInheritedTags,
         [switch]$IncludeTriggers,
         [ValidateNotNullOrEmpty()]
-        [array]$TemplateID,
+        [array]$TemplateIDs,
         [ValidateNotNullOrEmpty()]
         [array]$Tag,
         [ValidateNotNullOrEmpty()]
@@ -1182,8 +1182,8 @@ function Get-ZXHost {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "selectDiscoveries" -Value $DiscoveryProperties
     }
     # Return only hosts that are linked to the given templates.
-    if ($TemplateID) {
-        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateID)
+    if ($TemplateIDs) {
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateIDs)
     }
     if ($GroupIDs) {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "groupids" -Value @($GroupIDs)
@@ -1369,7 +1369,7 @@ function Get-ZXItem {
         [array]$Id,
         [array]$ItemID,
         [array]$GroupID,
-        [array]$TemplateID,
+        [array]$TemplateIDs,
         [string]$TemplateIDFilter,
         [string]$TemplateIDSearch,
         [array]$Tag,
@@ -1452,8 +1452,8 @@ function Get-ZXItem {
     if ($GroupID) {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "groupids" -Value @($GroupID)
     }
-    if ($TemplateID) {
-        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateID)
+    if ($TemplateIDs) {
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "templateids" -Value @($TemplateIDs)
     }
     if ($SortField) {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "sortfield" -Value @($SortField)
