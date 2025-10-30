@@ -2276,6 +2276,7 @@ function Get-ZXTrigger {
         [array]$Output,
         [ValidateNotNullOrEmpty()]
         [array]$Tag,
+        [string]$Flag,
         [string]$Description,
         [switch]$IncludeHosts,
         [switch]$IncludeHostGroups,
@@ -2298,7 +2299,10 @@ function Get-ZXTrigger {
     elseif($Output -contains "extend") {
         [string]$Output = "extend"
     }
-
+    
+    #Filter based on "flags" property
+    if ($Flag){AddFilter -PropertyName "flags" -PropertyValue $Flag}
+    
     #Get the item for the hosts with the specified IDs
     if ($HostID){
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "hostids" -Value $HostID
