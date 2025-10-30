@@ -3937,7 +3937,7 @@ Function Remove-ZXHostTagLoop{
         $HostID = $FoundHost.hostid
         if ($WhatIf){
             if(-not $FoundHost){
-                Write-Host -ForegroundColor Yellow "$HostName[$i] not found."
+                Write-Host -ForegroundColor Yellow "$($HostName[$i]) not found."
             }
             Remove-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue -Force -WhatIf
             continue
