@@ -3932,10 +3932,13 @@ Function Remove-ZXHostTagLoop{
     
     $FoundHosts = Get-ZXHost -HostName $HostName -Output host
 
-    function AddHostTags{
+    function RemoveHostTags{
         $FoundHost = $FoundHosts | Where-Object {$_.host -eq $HostName[$i]}
         $HostID = $FoundHost.hostid
         if ($WhatIf){
+            if(-not $FoundHost){
+                Write-Host -ForegroundColor Yellow "$HostName[$i] not found."
+            }
             Remove-ZXHostTag -HostID $HostID -TagName $TagName -TagValue $TagValue -Force -WhatIf
             continue
         }
@@ -3966,7 +3969,7 @@ Function Remove-ZXHostTagLoop{
     }
     
     for ($i=0; $i -lt $HostName.count; $i++){
-        AddHostTags
+        RemoveHostTags
     }
     $ResultPath = "$Home\Documents\$($MyInvocation.MyCommand.name).$DateTime.json"
     $Result | ConvertTo-Json -Depth 5 | Out-File $ResultPath
