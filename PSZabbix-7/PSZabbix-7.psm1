@@ -1524,6 +1524,7 @@ function Get-ZXItemPrototype {
         [string]$KeySearch,
         [string]$Type,
         [string]$TypeSearch,
+        [string]$Flag,
         [array]$Name,
         [string]$TemplateID,
         [switch]$TemplateD,
@@ -1608,6 +1609,7 @@ function Get-ZXItemPrototype {
     }
 
     if ($Name){AddFilter -PropertyName "name" -PropertyValue $Name}
+    if ($Flag){AddFilter -PropertyName "flags" -PropertyValue $Flag}
     if ($Id){AddFilter -PropertyName "itemid" -PropertyValue $Id}
     if ($Key){AddFilter -PropertyName "key_" -PropertyValue $Key}
     if ($State){AddFilter -PropertyName "state" -PropertyValue $State}
@@ -2367,6 +2369,7 @@ function Get-ZXTriggerPrototype {
         [string]$KeySearch,
         [string]$Type,
         [string]$TypeSearch,
+        [string]$Flag,
         [array]$Description,
         [string]$TemplateID,
         [switch]$TemplateD,
@@ -2462,6 +2465,7 @@ function Get-ZXTriggerPrototype {
     }
 
     if ($Description){AddFilter -PropertyName "name" -PropertyValue $Description}
+    if ($Flag){AddFilter -PropertyName "flags" -PropertyValue $Flag}
     if ($Id){AddFilter -PropertyName "triggerid" -PropertyValue $Id}
     if ($Key){AddFilter -PropertyName "key_" -PropertyValue $Key}
     if ($State){AddFilter -PropertyName "state" -PropertyValue $State}

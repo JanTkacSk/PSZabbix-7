@@ -42,7 +42,7 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger
+            ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger,Get-ZXTriggerPrototype,Get-ZXItemPrototype
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
