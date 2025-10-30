@@ -42,7 +42,8 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger,Get-ZXTriggerPrototype,Get-ZXItemPrototype
+            ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger,Get-ZXTriggerPrototype,Get-ZXItemPrototype,
+            bugfix - Remove-ZXHostTagLoop
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
