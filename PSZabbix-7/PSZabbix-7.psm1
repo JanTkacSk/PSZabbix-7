@@ -4066,4 +4066,5 @@ Export-ModuleMember -Function `
     Set-ZXHostStatus, `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `
+    Update-ZXItemHistory, `
     Update-ZXService
