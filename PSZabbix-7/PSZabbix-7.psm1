@@ -1514,7 +1514,7 @@ function Get-ZXItem {
 
 }
 
-function Update-ItemHistory {
+function Update-ZXItemHistory {
     param (
         [int]$ItemID,
         [string]$HostName,
