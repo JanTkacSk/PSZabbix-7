@@ -1513,6 +1513,43 @@ function Get-ZXItem {
     }   
 
 }
+
+function Update-ItemHistory {
+    param (
+        [int]$ItemID,
+        [string]$HostName,
+        [string]$Key,
+        [switch]$WhatIf,
+        $Value
+    )
+
+    # Basic PS Object wich will be edited based on the used parameters and finally converted to json
+    $PSObj = New-ZXApiRequestObject -Method "history.push"
+    
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "value" -Value $Value
+    
+    if ($ItemID){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "itemid" -Value $ItemID
+    }
+    if ($HostName){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "host" -Value $HostName
+    }
+    if ($Key){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "key" -Value $Key
+    }
+
+    $Json =  $PSObj | ConvertTo-Json -Depth 3
+
+    #Show JSON Request if -ShowJsonRequest switch is used
+    If ($WhatIf){
+        Write-JsonRequest
+    }
+    #Make the API call
+    if(!$WhatIf){
+        $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
+        Resolve-ZXApiResponse -Request $Request
+    } 
+}
 function Get-ZXItemPrototype {
     param(
         [array]$HostID,
