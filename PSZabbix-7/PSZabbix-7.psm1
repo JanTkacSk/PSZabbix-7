@@ -1550,6 +1550,64 @@ function Update-ZXItemValue {
         Resolve-ZXApiResponse -Request $Request
     } 
 }
+function Update-ZXEvent {
+    param(
+        (parameter="")
+        [Parameter(Mandatory=$true)]
+        [array]$EventID,
+        [ValidateSet("Close","Acknowkedge","AddMessage","ChangeSeverity","Unacknowledge","Suppress","Unsuppress","ChangeToCause","ChangeToSymptom")]
+        [string]$Action,
+        [string]$Message,
+        [ValidateSet("NotClassified","Information","Warning","Average","High","Disaster")]
+        [string]$Severity,
+        [int]$SupressUntil
+    )
+    
+    switch ($Action) {
+        "Close" { $Action = 1 }
+        "Acknowledge" { $Action = 2}
+        "AddMessage" { $Action = 4}
+        "ChangeSeverity" { $Action = 8}
+        "Unacknowledge" {$Action = 16}
+        "Suppress" {$Action = 32}
+        "Unsuppress" {$Action = 64}
+        "ChangeToCause" {$Action = 128}
+        "ChangeToSymptom" {$Action = 256}
+    }
+
+    switch ($Severity) {
+        "NotClassified" { $Severity = 0 }
+        "Information" { $Severity = 1}
+        "Warning" { $Severity = 2}
+        "Average" { $Severity = 3}
+        "High" {$Severity = 4}
+        "Disaster" {$Severity = 5}
+    }
+
+    # Basic PS Object wich will be edited based on the used parameters and finally converted to json
+    $PSObj = New-ZXApiRequestObject -Method "event.acknowledge"
+    $PSObj.param | Add-Member -MemberType NoteProperty -Name "eventids" -Value $EventID
+    $PSObj.param | Add-Member -MemberType NoteProperty -Name "action" -Value $Action
+    if ($Message){
+        $PsObj.param | Add-Member -MemberType NoteProperty -Name "message" -Value $Message
+    }
+    if ($Severity){
+        $PSObj.param | Add-Member -MemberType NoteProperty -Name "severity" -Value $Severity
+    }
+
+    #Show JSON Request if -ShowJsonRequest switch is used
+    If ($WhatIf){
+        Write-JsonRequest
+    }
+    
+    #Make the API call
+    if(!$WhatIf){
+        $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
+        Resolve-ZXApiResponse -Request $Request
+    }
+
+
+}
 function Get-ZXItemPrototype {
     param(
         [array]$HostID,
@@ -4067,4 +4125,5 @@ Export-ModuleMember -Function `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `
     Update-ZXItemValue, `
+    Update-ZXEvent, `
     Update-ZXService
