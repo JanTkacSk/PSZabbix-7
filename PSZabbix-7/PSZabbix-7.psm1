@@ -1552,7 +1552,6 @@ function Update-ZXItemValue {
 }
 function Update-ZXEvent {
     param(
-        (parameter="")
         [Parameter(Mandatory=$true)]
         [array]$EventID,
         [ValidateSet("Close","Acknowkedge","AddMessage","ChangeSeverity","Unacknowledge","Suppress","Unsuppress","ChangeToCause","ChangeToSymptom")]
