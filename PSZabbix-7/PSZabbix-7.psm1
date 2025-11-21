@@ -1554,7 +1554,9 @@ function Update-ZXEvent {
     param(
         [Parameter(Mandatory=$true)]
         [array]$EventID,
-        [ValidateSet("Close","Acknowkedge","AddMessage","ChangeSeverity","Unacknowledge","Suppress","Unsuppress","ChangeToCause","ChangeToSymptom")]
+        [ValidateSet("Close","AcknowLedge","AddMessage","ChangeSeverity","Unacknowledge","Suppress","Unsuppress","ChangeToCause","ChangeToSymptom", `
+        "1","2","4","8","16","32","64","128","256"
+        )]
         [string]$Action,
         [string]$Message,
         [ValidateSet("NotClassified","Information","Warning","Average","High","Disaster")]
@@ -1566,7 +1568,7 @@ function Update-ZXEvent {
     switch ($Action) {
         "Close" { $Action = 1 }
         "Acknowledge" { $Action = 2}
-        "AddMessage" { $Action = 4}
+        "AddMessage" { [int]$Action = 4}
         "ChangeSeverity" { $Action = 8}
         "Unacknowledge" {$Action = 16}
         "Suppress" {$Action = 32}
