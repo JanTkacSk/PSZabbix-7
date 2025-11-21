@@ -1514,7 +1514,7 @@ function Get-ZXItem {
 
 }
 
-function UpdateZXItemValue {
+function Update-ZXItemValue {
     param (
         [int]$ItemID,
         [string]$HostName,
@@ -4066,5 +4066,5 @@ Export-ModuleMember -Function `
     Set-ZXHostStatus, `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `
-    UpdateZXItemValue, `
+    Update-ZXItemValue, `
     Update-ZXService
