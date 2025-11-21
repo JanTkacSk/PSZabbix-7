@@ -1586,13 +1586,13 @@ function Update-ZXEvent {
 
     # Basic PS Object wich will be edited based on the used parameters and finally converted to json
     $PSObj = New-ZXApiRequestObject -Method "event.acknowledge"
-    $PSObj.param | Add-Member -MemberType NoteProperty -Name "eventids" -Value $EventID
-    $PSObj.param | Add-Member -MemberType NoteProperty -Name "action" -Value $Action
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "eventids" -Value $EventID
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "action" -Value $Action
     if ($Message){
-        $PsObj.param | Add-Member -MemberType NoteProperty -Name "message" -Value $Message
+        $PsObj.params | Add-Member -MemberType NoteProperty -Name "message" -Value $Message
     }
     if ($Severity){
-        $PSObj.param | Add-Member -MemberType NoteProperty -Name "severity" -Value $Severity
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "severity" -Value $Severity
     }
 
     #Show JSON Request if -ShowJsonRequest switch is used
