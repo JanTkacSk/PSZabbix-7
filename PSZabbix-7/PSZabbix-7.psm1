@@ -1559,7 +1559,8 @@ function Update-ZXEvent {
         [string]$Message,
         [ValidateSet("NotClassified","Information","Warning","Average","High","Disaster")]
         [string]$Severity,
-        [int]$SupressUntil
+        [int]$SupressUntil,
+        [switch]$WhatIf
     )
     
     switch ($Action) {
