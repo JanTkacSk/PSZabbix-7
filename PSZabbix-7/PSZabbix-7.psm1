@@ -1597,6 +1597,8 @@ function Update-ZXEvent {
         $PSObj.params | Add-Member -MemberType NoteProperty -Name "severity" -Value $Severity
     }
 
+    $Json =  $PSObj | ConvertTo-Json -Depth 3
+
     #Show JSON Request if -ShowJsonRequest switch is used
     If ($WhatIf){
         Write-JsonRequest
