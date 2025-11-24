@@ -1514,7 +1514,7 @@ function Get-ZXItem {
 
 }
 
-function Update-ZXItemHistory {
+function Update-ZXItemValue {
     param (
         [int]$ItemID,
         [string]$HostName,
@@ -1549,6 +1549,68 @@ function Update-ZXItemHistory {
         $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
         Resolve-ZXApiResponse -Request $Request
     } 
+}
+function Update-ZXEvent {
+    param(
+        [Parameter(Mandatory=$true)]
+        [array]$EventID,
+        [ValidateSet("Close","AcknowLedge","AddMessage","ChangeSeverity","Unacknowledge","Suppress","Unsuppress","ChangeToCause","ChangeToSymptom", `
+        "1","2","4","8","16","32","64","128","256"
+        )]
+        [string]$Action,
+        [string]$Message,
+        [ValidateSet("NotClassified","Information","Warning","Average","High","Disaster")]
+        [string]$Severity,
+        [int]$SupressUntil,
+        [switch]$WhatIf
+    )
+    
+    switch ($Action) {
+        "Close" { $Action = 1 }
+        "Acknowledge" { $Action = 2}
+        "AddMessage" { [int]$Action = 4}
+        "ChangeSeverity" { $Action = 8}
+        "Unacknowledge" {$Action = 16}
+        "Suppress" {$Action = 32}
+        "Unsuppress" {$Action = 64}
+        "ChangeToCause" {$Action = 128}
+        "ChangeToSymptom" {$Action = 256}
+    }
+
+    switch ($Severity) {
+        "NotClassified" { $Severity = 0 }
+        "Information" { $Severity = 1}
+        "Warning" { $Severity = 2}
+        "Average" { $Severity = 3}
+        "High" {$Severity = 4}
+        "Disaster" {$Severity = 5}
+    }
+
+    # Basic PS Object wich will be edited based on the used parameters and finally converted to json
+    $PSObj = New-ZXApiRequestObject -Method "event.acknowledge"
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "eventids" -Value $EventID
+    $PSObj.params | Add-Member -MemberType NoteProperty -Name "action" -Value $Action
+    if ($Message){
+        $PsObj.params | Add-Member -MemberType NoteProperty -Name "message" -Value $Message
+    }
+    if ($Severity){
+        $PSObj.params | Add-Member -MemberType NoteProperty -Name "severity" -Value $Severity
+    }
+
+    $Json =  $PSObj | ConvertTo-Json -Depth 3
+
+    #Show JSON Request if -ShowJsonRequest switch is used
+    If ($WhatIf){
+        Write-JsonRequest
+    }
+    
+    #Make the API call
+    if(!$WhatIf){
+        $Request = Invoke-RestMethod -Uri $ZXAPIUrl -Body $Json -ContentType "application/json" -Method Post
+        Resolve-ZXApiResponse -Request $Request
+    }
+
+
 }
 function Get-ZXItemPrototype {
     param(
@@ -4066,5 +4128,6 @@ Export-ModuleMember -Function `
     Set-ZXHostStatus, `
     Update-ZXHostTemplateList, `
     Update-ZXMaintenance, `
-    Update-ZXItemHistory, `
+    Update-ZXItemValue, `
+    Update-ZXEvent, `
     Update-ZXService

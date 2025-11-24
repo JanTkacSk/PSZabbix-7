@@ -43,7 +43,8 @@
 
             # ReleaseNotes of this module
             ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger,Get-ZXTriggerPrototype,Get-ZXItemPrototype,
-            bugfix - Remove-ZXHostTagLoop
+            Bugfix - Remove-ZXHostTagLoop,
+            Added Update-ZXEvent
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
