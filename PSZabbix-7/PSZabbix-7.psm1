@@ -286,7 +286,6 @@ function Add-ZXHostTag{
     if ($ZXHost){
         [System.Collections.ArrayList]$TagList = $ZXHost.tags
         $TagList =  $TagList += [PSCustomObject]@{"tag"= $TagName; "value"=$TagValue}
-        #$PSObj.params |  Add-Member -MemberType NoteProperty -Name "host" -Value $ZXHost.host
         $PSObj.params |  Add-Member -MemberType NoteProperty -Name "tags" -Value @($TagList)
 
     }
