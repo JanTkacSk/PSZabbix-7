@@ -3,7 +3,7 @@
     RootModule = 'PSZabbix-7.psm1'
 
     # Version number of this module.
-    ModuleVersion = '1.0.1'
+    ModuleVersion = '1.0.2'
 
     # ID used to uniquely identify this module
     GUID = 'd3e66cb0-4c68-4f07-9d70-b92a15a26c7a'
@@ -42,7 +42,8 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Bugfix - New-ZXTokenSession - prevent saving duplicate entries with the same URL
+            ReleaseNotes = 'Bugfix - Removed host property from Add-ZXHOstTag because it was overwriting the host with the same host name and
+            in case of discovered hosts this was causing an error because those cannot be overwritten.
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
