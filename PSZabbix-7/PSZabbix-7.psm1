@@ -3035,7 +3035,8 @@ function New-ZXTokenSession{
         #Get the data from the Tokens.txt, filter out the entry with the same URL you have entered in case it exists.
         #This way you can enter the same url again and the record with this url will be overwritten
         $LogonData = @()
-        $LogonData += Get-Content -Raw $SaveLocation | ConvertFrom-Json | Where-Object {$_.URL.Trim() -ne $NewObj.URL.Trim() }
+        $FilteredSessions = Get-Content -Raw $SaveLocation | ConvertFrom-Json
+        $LogonData += $FilteredSessions | Where-Object {$_.URL.trim() -ne $NewObj.URL.trim() }
         #Add the data you entered into read-host prompt
         $LogonData += $NewObj
         #Add an Id to each object

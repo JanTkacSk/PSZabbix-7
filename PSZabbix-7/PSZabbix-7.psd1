@@ -3,7 +3,7 @@
     RootModule = 'PSZabbix-7.psm1'
 
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '1.0.1'
 
     # ID used to uniquely identify this module
     GUID = 'd3e66cb0-4c68-4f07-9d70-b92a15a26c7a'
@@ -42,9 +42,7 @@
             Tags = @('Zabbix', 'API', 'Monitoring')
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'Added -Flag parameter to Get-ZXTrigger,Get-ZXTriggerPrototype,Get-ZXItemPrototype,
-            Bugfix - Remove-ZXHostTagLoop,
-            Added Update-ZXEvent
+            ReleaseNotes = 'Bugfix - New-ZXTokenSession - prevent saving duplicate entries with the same URL
             '
             # Projed URL
             ProjectUri = 'https://github.com/JanTkacSk/PSZabbix-7'
